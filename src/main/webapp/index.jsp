@@ -5,9 +5,18 @@
     <title>JSP - Hello World</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
-</h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
+
+<div>
+    <span>用户名:</span>
+    <span><input type="text" /></span>
+</div>
+<div>
+    <span>密码:</span>
+    <span><input type="password" /></span>
+</div>
+<div>
+    <input type="submit"/>
+</div>
+
 </body>
 </html>
