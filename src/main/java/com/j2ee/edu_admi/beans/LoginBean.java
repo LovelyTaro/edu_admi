@@ -1,16 +1,16 @@
 package com.j2ee.edu_admi.beans;
 
 import java.sql.*;
+import java.util.LinkedList;
+import java.util.List;
 
 public class LoginBean {
 
     //单例模式
     private static LoginBean loginBean;
     private LoginBean() throws ClassNotFoundException {
-
             //注册驱动
             Class.forName("com.mysql.cj.jdbc.Driver");
-
     }
     public static LoginBean getInstance() throws ClassNotFoundException {
         //如果loginBean是空说明LoginBean的对象没有被创建，则new一个对象返回
@@ -34,27 +34,30 @@ public class LoginBean {
     //检测登录的函数
     public boolean Login(String username, String passwd) {
         try {
+
             //创建数据库连接
             Connection connection = connectDB();
 
-            //通过输入用户名向数据库查询
-            Statement statement = connection.createStatement();
-            String sql = "select * from person where username ='" + username + "'and passwd = '" + passwd + "'";
-            ResultSet resultSet = statement.executeQuery(sql);
+//            //通过输入用户名向数据库查询
+            //使用statement形式
+//            Statement statement = connection.createStatement();
+//            String sql = "select * from person where pname ='" + username + "' and passwd = '" + passwd + "'";
+//            ResultSet resultSet = statement.executeQuery(sql);
 
-//            //使用preprareStatement进行数据库的查询
-//            String sql1 = "select * from person where username =? and passwd =?";
-//            PreparedStatement preparedStatement = connection.prepareStatement(sql1);
-//            preparedStatement.setString(1,username);
-//            preparedStatement.setString(2,passwd);
-//            ResultSet resultSet1 = preparedStatement.executeQuery();
+            //使用preparedStatement进行数据库的查询
+            String sql1 = "select * from person where pname =? and passwd =?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql1);
+            preparedStatement.setString(1,username);
+            preparedStatement.setString(2,passwd);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             //根据resultSet的结果判断账号密码是否正确
             boolean isUserInfoTrue = resultSet.next();
 
             //关闭所有连接
             resultSet.close();
-            statement.close();
+            preparedStatement.close();
+//            statement.close();
             connection.close();
 
             //返回结果
@@ -65,5 +68,35 @@ public class LoginBean {
             return false;
         }
     }
+
+
+    //数据库测试函数
+//    public List<String> dbTest(){
+//
+//        //创建数据库连接
+//        Connection connection = connectDB();
+//        //通过输入用户名向数据库查询
+//        Statement statement = null;
+//        try {
+//            statement = connection.createStatement();
+//            String sql = "select * from person where pname='小明'";
+//            ResultSet resultSet = statement.executeQuery(sql);
+//            List<String> list = new LinkedList<>();
+//            while (resultSet.next()){
+//                String str = resultSet.getString(2)+","+resultSet.getString(3);
+//                list.add(str);
+//            }
+//
+//            resultSet.close();
+//            statement.close();
+//            connection.close();
+//
+//            return list;
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
+
 }
 
