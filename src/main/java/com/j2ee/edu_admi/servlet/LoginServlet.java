@@ -22,14 +22,20 @@ public class LoginServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
         String username = request.getParameter("usernameInfo");
-        String passwd = request.getParameter("passwdInfo");
+        String password = request.getParameter("passwordInfo");
 
         try {
             LoginBean loginBean = LoginBean.getInstance();
-            if(loginBean.Login(username,passwd)){
+            if(loginBean.Login(username,password)){
+
+                //获取session
+                request.getSession().setAttribute("LoginInfo",username);
+
+                //登录成功跳转至home.html
                 getServletContext().getRequestDispatcher("/home.html").forward(request,response);
 
             }else{
+                //登录失败则
                 getServletContext().getRequestDispatcher("/test.jsp").forward(request,response);
             }
 

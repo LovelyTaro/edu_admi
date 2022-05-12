@@ -32,7 +32,7 @@ public class LoginBean {
     }
 
     //检测登录的函数
-    public boolean Login(String username, String passwd) {
+    public boolean Login(String username, String password) {
         try {
 
             //创建数据库连接
@@ -41,14 +41,14 @@ public class LoginBean {
 //            //通过输入用户名向数据库查询
             //使用statement形式
 //            Statement statement = connection.createStatement();
-//            String sql = "select * from person where pname ='" + username + "' and passwd = '" + passwd + "'";
+//            String sql = "select * from person where pname ='" + username + "' and password = '" + password + "'";
 //            ResultSet resultSet = statement.executeQuery(sql);
 
             //使用preparedStatement进行数据库的查询
             String sql1 = "select * from person where pname =? and passwd =?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql1);
             preparedStatement.setString(1,username);
-            preparedStatement.setString(2,passwd);
+            preparedStatement.setString(2,password);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             //根据resultSet的结果判断账号密码是否正确
