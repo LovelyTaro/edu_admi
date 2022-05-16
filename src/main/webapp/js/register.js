@@ -10,7 +10,6 @@ function loginSubmit() {
 }
 
 //注册：检查注册时所有项是否正确
-//TODO 当第一遍检测用户名重读
 function checkAll() {
     if (checkUsernameIsEmpty() && checkPassword() && checkPasswordAgain() && checkUsername()){
         return true;
