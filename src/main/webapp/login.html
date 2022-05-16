@@ -1,44 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta name="author" content="Dcy">
+
+    <script src="jquery-3.5.1/jquery-3.5.1.js"></script>
+    <script src="js/register.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="css/login.css">
+
     <title>登录</title>
 </head>
 
-<script>
-    function checkSubmit(){
-        //获取登录信息
-        let username = document.forms["loginForm"]["usernameInfo"].value;
-        let password = document.forms["loginForm"]["passwordInfo"].value;
-
-        //如果未输入用户名和密码，则不提交表单
-        if(username == ""){
-            alert("请输入用户名");
-            return false;
-        }else if(password == ""){
-            alert("请输入密码")
-            return false
-        }
+<style>
+    .form-signin input[id='passwordInfo']{
+        margin-bottom: 10px;
     }
-
-</script>
+</style>
 
 <body>
-<!-- 登录界面 -->
-<div style="text-align:center">
-    <form id="loginForm" action="LoginServlet" method="POST" onsubmit="return checkSubmit()">
-        <div style="margin-top: 40px">
-            <span>用户名:</span>
-                <span><input name="usernameInfo" type="text" placeholder="请输入用户名"/></span>
+
+<div class="container"><!-- BootStrap提供的登录示例 -->
+
+    <form class="form-signin" id="loginForm" method="post" action="LoginServlet" >
+        <h2 class="form-signin-heading">登录</h2>
+        <label for="usernameInfo" class="sr-only">用户名</label>
+        <input type="text" id="usernameInfo" class="form-control" placeholder="请输入用户名" name="usernameInfo" onblur="checkUsernameIsEmpty()" autofocus>
+        <label for="passwordInfo" class="sr-only">密码</label>
+        <input type="password" id="passwordInfo" class="form-control" name="passwordInfo" placeholder="请输入密码" onblur="checkPassword()" required>
+        <!--身份选择菜单-->
+        <div style="margin-bottom: 10px;font-size: 16px;">
+            <span style="margin-right: 5px">请选择您的身份:</span>
+            <select id="idInfo" name="idInfo">
+                <option>学生</option>
+                <option>老师</option>
+                <option>管理员</option>
+            </select>
         </div>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
         <div>
-            <span>密码:</span>
-                <span><input name="passwordInfo" type="password" placeholder="请输入密码"/></span>
-        </div>
-        <div>
-            <input type="submit" value="登录" />
+            <label>
+                <a href="register.html">没有账号，去注册</a>
+            </label>
         </div>
     </form>
-</div>
+</div> <!-- /container -->
+
 </body>
 </html>
+<script>
+
+    function loginCheck(){
+
+        let username =$('#usernameInfo').val();
+        let password = $('#passwordInfo').val();
+        let id = $('#idInfo').val();
+
+        $.ajax({
+
+            url:'LoginServlet',
+            type:'post',
+            data:{usernaem:username,password:password,id:id},
+            dataType:'json',
+            success:function (data){
+                if(data.exist){
+                    // $(location).attr()
+                }
+            }
+
+        })
+
+    }
+
+
+
+</script>

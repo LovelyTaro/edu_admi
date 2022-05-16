@@ -1,102 +1,55 @@
 package com.j2ee.edu_admi.beans;
 
-import java.sql.*;
-import java.util.LinkedList;
-import java.util.List;
+import java.sql.SQLException;
 
 public class LoginBean {
 
-    //单例模式
-    private static LoginBean loginBean;
-    private LoginBean() throws ClassNotFoundException {
-            //注册驱动
-            Class.forName("com.mysql.cj.jdbc.Driver");
-    }
-    public static LoginBean getInstance() throws ClassNotFoundException {
-        //如果loginBean是空说明LoginBean的对象没有被创建，则new一个对象返回
-        if (loginBean == null) {
-            loginBean = new LoginBean();
-        }
-        return loginBean;
+
+    private DBControl DBControl;
+
+    public LoginBean() throws ClassNotFoundException {
+        //获取数据库对象
+        DBControl = DBControl.getDataBaseBean();
     }
 
-    //连接数据库
-    private Connection connectDB(){
-        try {
-            //连接数据库
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/j2ee", "root", "123456");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 
     //检测登录的函数
-    public boolean Login(String username, String password) {
+    public boolean login(User user) {
+
+        //用queryUserExist查询数据库中是否存在次对象
         try {
-
-            //创建数据库连接
-            Connection connection = connectDB();
-
-//            //通过输入用户名向数据库查询
-            //使用statement形式
-//            Statement statement = connection.createStatement();
-//            String sql = "select * from person where pname ='" + username + "' and password = '" + password + "'";
-//            ResultSet resultSet = statement.executeQuery(sql);
-
-            //使用preparedStatement进行数据库的查询
-            String sql1 = "select * from person where pname =? and passwd =?";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql1);
-            preparedStatement.setString(1,username);
-            preparedStatement.setString(2,password);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            //根据resultSet的结果判断账号密码是否正确
-            boolean isUserInfoTrue = resultSet.next();
-
-            //关闭所有连接
-            resultSet.close();
-            preparedStatement.close();
-//            statement.close();
-            connection.close();
-
-            //返回结果
-            return isUserInfoTrue;
-
+            return DBControl.queryUserExist(user);
         } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
+    public boolean register(User user){
+
+        try {
+            DBControl dbControl = DBControl.getDataBaseBean();
+             return dbControl.insertUser(user);
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
             return false;
         }
     }
 
 
-    //数据库测试函数
-//    public List<String> dbTest(){
-//
-//        //创建数据库连接
-//        Connection connection = connectDB();
-//        //通过输入用户名向数据库查询
-//        Statement statement = null;
-//        try {
-//            statement = connection.createStatement();
-//            String sql = "select * from person where pname='小明'";
-//            ResultSet resultSet = statement.executeQuery(sql);
-//            List<String> list = new LinkedList<>();
-//            while (resultSet.next()){
-//                String str = resultSet.getString(2)+","+resultSet.getString(3);
-//                list.add(str);
-//            }
-//
-//            resultSet.close();
-//            statement.close();
-//            connection.close();
-//
-//            return list;
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            return null;
-//        }
-//    }
+    public boolean checkUserName(String username){
+        try {
+            DBControl dbControl = DBControl.getDataBaseBean();
+            return dbControl.queryName(username);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 }
 
