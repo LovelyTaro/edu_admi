@@ -22,6 +22,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        response.setContentType("text/html;charset=utf-8");
         //设置request的编码为utf8否则中文会乱码
         request.setCharacterEncoding("utf-8");
         String username = request.getParameter("usernameInfo");
@@ -33,7 +34,7 @@ public class LoginServlet extends HttpServlet {
         try(PrintWriter out =response.getWriter()) {
             LoginBean loginBean = new LoginBean();
             if(loginBean.login(user)){
-                response.setContentType("text/html;charset=utf-8");
+
                 //获取session
                 request.getSession().setAttribute("LoginInfo",username);
                 //登录成功跳转至home.html
@@ -41,9 +42,7 @@ public class LoginServlet extends HttpServlet {
 
             }else{
                 //登录失败
-                response.setContentType("text/javascript;charset=utf-8");
-
-
+                getServletContext().getRequestDispatcher("/test.jsp").forward(request,response);
             }
 
         } catch (ClassNotFoundException e) {

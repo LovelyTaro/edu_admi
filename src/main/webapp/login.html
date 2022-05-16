@@ -27,12 +27,12 @@
 
 <div class="container"><!-- BootStrap提供的登录示例 -->
 
-    <form class="form-signin" id="loginForm" method="post" action="LoginServlet" >
+    <form class="form-signin" id="loginForm" method="post" action="LoginServlet" onsubmit="return loginSubmit();">
         <h2 class="form-signin-heading">登录</h2>
         <label for="usernameInfo" class="sr-only">用户名</label>
-        <input type="text" id="usernameInfo" class="form-control" placeholder="请输入用户名" name="usernameInfo" onblur="checkUsernameIsEmpty()" autofocus>
+        <input type="text" id="usernameInfo" class="form-control" placeholder="请输入用户名" name="usernameInfo" onblur="checkUsernameIsEmpty()">
         <label for="passwordInfo" class="sr-only">密码</label>
-        <input type="password" id="passwordInfo" class="form-control" name="passwordInfo" placeholder="请输入密码" onblur="checkPassword()" required>
+        <input type="password" id="passwordInfo" class="form-control" name="passwordInfo" placeholder="请输入密码" onblur="checkPassword()">
         <!--身份选择菜单-->
         <div style="margin-bottom: 10px;font-size: 16px;">
             <span style="margin-right: 5px">请选择您的身份:</span>
@@ -54,30 +54,3 @@
 
 </body>
 </html>
-<script>
-
-    function loginCheck(){
-
-        let username =$('#usernameInfo').val();
-        let password = $('#passwordInfo').val();
-        let id = $('#idInfo').val();
-
-        $.ajax({
-
-            url:'LoginServlet',
-            type:'post',
-            data:{usernaem:username,password:password,id:id},
-            dataType:'json',
-            success:function (data){
-                if(data.exist){
-                    // $(location).attr()
-                }
-            }
-
-        })
-
-    }
-
-
-
-</script>

@@ -32,7 +32,7 @@ public class RegisterServlet extends HttpServlet {
                 //获取session
                 request.getSession().setAttribute("LoginInfo", username);
                 //登录成功跳转至home.html
-                getServletContext().getRequestDispatcher("/home.html").forward(request, response);
+                getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
             } else {
                 getServletContext().getRequestDispatcher("/test.jsp").forward(request, response);
             }
