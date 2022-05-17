@@ -1,5 +1,8 @@
 package com.j2ee.edu_admi.beans;
 
+/**
+ * @author Dcy
+ */
 public class User {
 
     public User(String username, String password, String id){

@@ -2,14 +2,17 @@ package com.j2ee.edu_admi.beans;
 
 import java.sql.SQLException;
 
+/**
+ * @author Dcy
+ */
 public class LoginBean {
 
 
-    private DBControl DBControl;
+    private DBControl dbControl;
 
     public LoginBean() throws ClassNotFoundException {
         //获取数据库对象
-        DBControl = DBControl.getDataBaseBean();
+        dbControl = dbControl.getDataBaseBean();
     }
 
 
@@ -18,7 +21,7 @@ public class LoginBean {
 
         //用queryUserExist查询数据库中是否存在次对象
         try {
-            return DBControl.queryUserExist(user);
+            return dbControl.queryUserExist(user);
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -29,7 +32,7 @@ public class LoginBean {
     public boolean register(User user){
 
         try {
-            DBControl dbControl = DBControl.getDataBaseBean();
+            DBControl dbControl = this.dbControl.getDataBaseBean();
              return dbControl.insertUser(user);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -40,7 +43,7 @@ public class LoginBean {
 
     public boolean checkUserName(String username){
         try {
-            DBControl dbControl = DBControl.getDataBaseBean();
+            DBControl dbControl = this.dbControl.getDataBaseBean();
             return dbControl.queryName(username);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

@@ -11,6 +11,10 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author Dcy
+ */
+
 @WebServlet(name = "CheckNameAjaxServlet", value = "/CheckNameAjaxServlet")
 public class CheckNameAjaxServlet extends HttpServlet {
     @Override

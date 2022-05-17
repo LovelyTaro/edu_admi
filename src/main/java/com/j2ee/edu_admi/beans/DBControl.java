@@ -2,6 +2,10 @@ package com.j2ee.edu_admi.beans;
 
 import java.sql.*;
 
+/**
+ * @author Dcy
+ */
+
 public class DBControl {
 
     private static DBControl DBControl;

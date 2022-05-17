@@ -1,18 +1,67 @@
+/**
+ * @author Dcy
+ */
+
 //提交登录前的判断，如果都不为空则提交登录
 function loginSubmit() {
     if (checkUsernameIsEmpty() && checkPassword()) {
-        return true;
+        let usernameInfo = $('#usernameInfo').val();
+        let passwordInfo = $('#passwordInfo').val();
+        let idInfo = $('#idInfo').val();
+
+        //用ajax向后台提交表单
+        $.ajax({
+            url: 'LoginServlet',
+            type: 'post',
+            data: {usernameInfo: usernameInfo, passwordInfo: passwordInfo, idInfo: idInfo},
+            dataType: 'json',
+            success: function (data) {
+                if (data.loginResult) {
+                    console.log()
+                    window.location.href = 'home.jsp';
+                } else {
+                    if ($('#loginError').length > 0) {
+                    } else {
+                        const $p = $("<p id='loginError' style='color: red;font-size: 16px;margin-top: 5px;margin-bottom: -2px'>*用户名或密码错误</p>");
+                        $p.insertAfter($('#passwordInfo'));
+                    }
+                }
+            }
+        })
+
     } else {
         alert("请检查所有信息")
-        return false;
     }
 
 }
 
 //注册：检查注册时所有项是否正确
 function checkAll() {
-    if (checkUsernameIsEmpty() && checkPassword() && checkPasswordAgain() && checkUsername()){
-        return true;
+    if (checkUsernameIsEmpty() && checkPassword() && checkPasswordAgain() && checkUsername()) {
+
+        let usernameInfo = $('#usernameInfo').val();
+        let passwordInfo = $('#passwordInfo').val();
+        let idInfo = $('#idInfo').val();
+
+        //用ajax向后台提交表单
+        $.ajax({
+            url: 'RegisterServlet',
+            type: 'post',
+            data: {usernameInfo: usernameInfo, passwordInfo: passwordInfo, idInfo: idInfo},
+            dataType: 'json',
+            success: function (data) {
+                if (data.registerResult) {
+                    console.log()
+                    window.location.href = 'home.jsp';
+                } else {
+                    if ($('#registerError').length > 0) {
+                    } else {
+                        const $p = $("<p id='registerError' style='color: red;font-size: 16px;margin-top: 5px;margin-bottom: -2px'>*注册失败</p>");
+                        $p.insertAfter($('#passwordAgain'));
+                    }
+                }
+            }
+        })
     } else {
         alert("请检查所有信息")
         return false;
@@ -153,9 +202,9 @@ function checkUsername() {
                 }
             }
         })
-        if($('#success-message').length > 0){
+        if ($('#success-message').length > 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }

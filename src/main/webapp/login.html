@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="author" content="Dcy">
-
+    <!-- jQuery -->
     <script src="jquery-3.5.1/jquery-3.5.1.js"></script>
-    <script src="js/register.js"></script>
-
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="css/login.css">
+    <script src="js/register.js"></script>
 
     <title>登录</title>
 </head>
@@ -27,7 +26,7 @@
 
 <div class="container"><!-- BootStrap提供的登录示例 -->
 
-    <form class="form-signin" id="loginForm" method="post" action="LoginServlet" onsubmit="return loginSubmit();">
+    <form class="form-signin" id="loginForm" method="post" action="LoginServlet">
         <h2 class="form-signin-heading">登录</h2>
         <label for="usernameInfo" class="sr-only">用户名</label>
         <input type="text" id="usernameInfo" class="form-control" placeholder="请输入用户名" name="usernameInfo" onblur="checkUsernameIsEmpty()">
@@ -43,7 +42,7 @@
             </select>
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+        <button class="btn btn-lg btn-primary btn-block" type="button" onclick="loginSubmit();">登录</button>
         <div>
             <label>
                 <a href="register.html">没有账号，去注册</a>

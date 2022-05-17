@@ -8,6 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <script src="jquery-3.5.1/jquery-3.5.1.min.js"></script>
+    <script src="js/home.js"></script>
     <title>主页</title>
 </head>
 <body>
