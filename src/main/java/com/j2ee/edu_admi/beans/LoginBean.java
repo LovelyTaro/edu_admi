@@ -8,17 +8,16 @@ import java.sql.SQLException;
 public class LoginBean {
 
 
-    private DBControl dbControl;
+    private final DBControl dbControl;
 
     public LoginBean() throws ClassNotFoundException {
         //获取数据库对象
-        dbControl = dbControl.getDataBaseBean();
+        dbControl = DBControl.getDataBaseBean();
     }
 
 
     //检测登录的函数
     public boolean login(User user) {
-
         //用queryUserExist查询数据库中是否存在次对象
         try {
             return dbControl.queryUserExist(user);
@@ -29,26 +28,28 @@ public class LoginBean {
 
     }
 
+    //用户注册
     public boolean register(User user){
-
         try {
-            DBControl dbControl = this.dbControl.getDataBaseBean();
+            //查询用户是否存在
+            if(dbControl.queryUserExist(user)){
+                return false;
+            }
+            DBControl dbControl = DBControl.getDataBaseBean();
              return dbControl.insertUser(user);
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
 
 
+    //检查用户名是否重复
     public boolean checkUserName(String username){
         try {
-            DBControl dbControl = this.dbControl.getDataBaseBean();
+            DBControl dbControl = DBControl.getDataBaseBean();
             return dbControl.queryName(username);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            return false;
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
             return false;
         }

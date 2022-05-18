@@ -23,7 +23,7 @@ public class LoginServlet extends HttpServlet {
 
     //对LoginServlet的get请求就是退出登录
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         //退出登录
         response.setContentType("text/javascript;charset=utf-8");
@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         response.setContentType("text/javascript;charset=utf-8");
         //设置request的编码为utf8否则中文会乱码
@@ -52,8 +52,8 @@ public class LoginServlet extends HttpServlet {
                 //获取session
                 request.getSession().setAttribute("LoginInfo",username);
                 //登录成功跳转至home.html
-//                getServletContext().getRequestDispatcher("/home.jsp").forward(request,response);
-                Map result = new HashMap();
+//                getServletContext().getRequestDispatcher("/home_adm.jsp").forward(request,response);
+                Map<String,Object> result = new HashMap<String,Object>();
                 result.put("loginResult",true);
                 String json = new Gson().toJson(result);
                 out.print(json);
@@ -61,7 +61,7 @@ public class LoginServlet extends HttpServlet {
             }else{
                 //登录失败
 //                getServletContext().getRequestDispatcher("/test.jsp").forward(request,response);
-                Map result = new HashMap();
+                Map<String,Object> result = new HashMap<String,Object>();
                 result.put("loginResult",false);
                 String json = new Gson().toJson(result);
                 out.print(json);

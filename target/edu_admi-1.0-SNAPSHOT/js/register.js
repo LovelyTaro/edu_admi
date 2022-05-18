@@ -17,8 +17,15 @@ function loginSubmit() {
             dataType: 'json',
             success: function (data) {
                 if (data.loginResult) {
-                    console.log()
-                    window.location.href = 'home.jsp';
+                    if(idInfo === "管理员"){
+                        window.location.href = 'home_adm.jsp';
+                    }
+                    if(idInfo === "老师"){
+                        window.location.href = 'home_tea.jsp';
+                    }
+                    if(idInfo === "学生"){
+                        window.location.href = 'home_stu.jsp';
+                    }
                 } else {
                     if ($('#loginError').length > 0) {
                     } else {
@@ -52,7 +59,7 @@ function checkAll() {
             success: function (data) {
                 if (data.registerResult) {
                     console.log()
-                    window.location.href = 'home.jsp';
+                    window.location.href = 'home_adm.jsp';
                 } else {
                     if ($('#registerError').length > 0) {
                     } else {

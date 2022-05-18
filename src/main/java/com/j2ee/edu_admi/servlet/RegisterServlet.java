@@ -19,12 +19,12 @@ import java.util.Map;
 @WebServlet(name = "RegisterServlet", value = "/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
@@ -40,8 +40,8 @@ public class RegisterServlet extends HttpServlet {
                 //获取session
                 request.getSession().setAttribute("LoginInfo",username);
                 //登录成功跳转至home.html
-//                getServletContext().getRequestDispatcher("/home.jsp").forward(request,response);
-                Map result = new HashMap();
+//                getServletContext().getRequestDispatcher("/home_adm.jsp").forward(request,response);
+                Map<String,Object> result = new HashMap<String,Object>();
                 result.put("registerResult",true);
                 String json = new Gson().toJson(result);
                 out.print(json);
@@ -49,7 +49,7 @@ public class RegisterServlet extends HttpServlet {
             }else{
                 //登录失败
 //                getServletContext().getRequestDispatcher("/test.jsp").forward(request,response);
-                Map result = new HashMap();
+                Map<String,Object> result = new HashMap<String,Object>();
                 result.put("registerResult",false);
                 String json = new Gson().toJson(result);
                 out.print(json);

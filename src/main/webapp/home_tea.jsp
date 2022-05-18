@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+<%--
+  Created by IntelliJ IDEA.
+  User: 54684
+  Date: 2022/5/16
+  Time: 22:09
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -9,26 +16,26 @@
 
     <!-- 导入js-->
     <script type="text/javascript" src="jquery-3.5.1/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript" src="js/tendina.min.js"></script>
-    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/home.js"></script>
 </head>
 <body>
 
 <!--顶部-->
 <div class="layout_top_header">
-    <div style="float: left"><span
-            style="font-size: 16px;line-height: 45px;padding-left: 20px;color: #8d8d8d">教务管理系统</h1></span></div>
+    <div style="float: left">
+        <span style="font-size: 16px;line-height: 45px;padding-left: 20px;color: #8d8d8d">教务管理系统</span>
+    </div>
     <div id="ad_setting" class="ad_setting">
         <a class="ad_setting_a" href="javascript:; ">
             <i class="icon-user glyph-icon" style="font-size: 20px"></i>
-            <span>管理员</span>
+            <span>xxx老师</span>
             <i class="icon-chevron-down glyph-icon"></i>
         </a>
         <ul class="dropdown-menu-uu" style="display: none" id="ad_setting_ul">
             <li class="ad_setting_ul_li"><a href="javascript:;"><i class="icon-user glyph-icon"></i> 个人中心 </a></li>
             <li class="ad_setting_ul_li"><a href="javascript:;"><i class="icon-cog glyph-icon"></i> 设置 </a></li>
             <li class="ad_setting_ul_li">
-                <a href="javascript:;">
+                <a href="javascript:logout();">
                     <i class="icon-signout glyph-icon"></i>
                     <span class="font-bold">退出</span>
                 </a>
