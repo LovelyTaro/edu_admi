@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.io.PrintWriter" %><%--
   Created by IntelliJ IDEA.
   User: Dcy
   Date: 2022/5/16
@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -20,7 +22,7 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"/>
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
             integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
@@ -28,7 +30,6 @@
 </head>
 
 <body>
-
 <!--顶部-->
 <div class="layout_top_header">
     <div style="float: left">
@@ -56,7 +57,7 @@
         </li>
         <!--成员管理-->
         <li class="childUlLi">
-            <a > <i class="glyph-icon icon-reorder"></i>课程管理</a>
+            <a> <i class="glyph-icon icon-reorder"></i>课程管理</a>
             <ul></ul>
         </li>
         <!--角色管理-->
@@ -120,6 +121,7 @@
                 <div class="table_outside">
                     <%--bootstrap响应式的表格--%>
                     <table class="table table-striped">
+                        <%--表头--%>
                         <thead>
                         <tr>
                             <th>课程编号</th>
@@ -134,38 +136,41 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>J2EE与中间件</td>
-                            <td>1001叶老师</td>
-                            <td>周一</td>
-                            <td>浦Ⅲ106</td>
-                            <td>18</td>
-                            <td>计算机系</td>
-                            <td>3</td>
-                            <td>
-                                <button class="btn btn-default" data-toggle="modal" data-target="#editModal"
-                                        data-whatever="1">编辑
-                                </button>
-                                <button class="btn btn-default">删除</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Java程序设计</td>
-                            <td>1002李老师</td>
-                            <td>周二</td>
-                            <td>浦Ⅱ203</td>
-                            <td>19</td>
-                            <td>计算机系</td>
-                            <td>3</td>
-                            <td>
-                                <button class="btn btn-default" data-toggle="modal" data-target="#editModal"
-                                        data-whatever="2">编辑
-                                </button>
-                                <button class="btn btn-default">删除</button>
-                            </td>
-                        </tr>
+                        <%--根据后台后台传入的courseList动态生成当前表格--%>
+                        <c:forEach var="course" items="${courseList}" begin="0" end="8" step="1">
+                            <tr>
+                                <th scope="row">
+                                    <c:out value="${course.courseNum}"/>
+                                </th>
+                                <td><c:out value="${course.courseName}"/></td>
+                                <td>
+                                    <c:if test="${course.courseNum != 0}">
+                                        <c:out value="${course.teacherNum}"/>
+                                    </c:if>
+                                </td>
+                                <td><c:out value="${course.courseTime}"/></td>
+                                <td><c:out value="${course.coursePosition}"/></td>
+                                <td>
+                                    <c:if test="${course.courseNum != 0}">
+                                        <c:out value="${course.weeks}"/>
+                                    </c:if>
+                                </td>
+                                <td><c:out value="${course.facultyName}"/></td>
+                                <td>
+                                    <c:if test="${course.courseNum != 0}">
+                                        <c:out value="${course.credit}"/>
+                                    </c:if>
+                                </td>
+                                <td>
+                                    <c:if test="${course.courseNum != 0}">
+                                        <button class="btn btn-default" data-toggle="modal" data-target="#editModal"
+                                                data-flag="${course.courseNum}">编辑
+                                        </button>
+                                        <button class="btn btn-default">删除</button>
+                                    </c:if>
+                                </td>
+                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
@@ -174,17 +179,17 @@
                 <div class="nav_outside">
                     <nav aria-label="...">
                         <ul class="pager">
-                            <li><a href="#">向前</a></li>
-                            <span style="margin-left: 10px;">
-                            <%--当前所在的页数--%>
-                                1
+                            <li><a href="javascript:pageForward();">向前</a></li>
+                            <span style="margin-left: 10px;" id="pageNow">
+                                <%--当前所在的页数--%>
+                                <c:out value="${page}" default="0"/>
                             </span>
                             <span>/</span>
-                            <span style="margin-right: 10px;">
-                            <%--共有几页--%>
-                                5
+                            <span style="margin-right: 10px;" id="pageAll">
+                                <%--共有几页--%>
+                                <c:out value="${courseNum}" default="1"/>
                             </span>
-                            <li><a href="#">向后</a></li>
+                            <li><a href="javascript:pageBackward();">向后</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -227,8 +232,8 @@
                                             <input type="text" class="form-control" id="course-weeks"/>
                                         </div>
                                         <div class="form-group">
-                                            <label for="course-type" class="control-label">课程类型</label>
-                                            <input type="text" class="form-control" id="course-type"/>
+                                            <label for="course-faculty" class="control-label">院系</label>
+                                            <input type="text" class="form-control" id="course-faculty"/>
                                         </div>
                                         <div class="form-group">
                                             <label for="course-credit" class="control-label">学分</label>
@@ -238,20 +243,39 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                    <button type="button" class="btn btn-primary" style="background: RGB(53,54,54)">提交
+                                    <button type="button" class="btn btn-primary" style="background: RGB(53,54,54)" id="preservation">保存
                                     </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <script>
-                        //课程编辑栏的弹出框的js
+                        // 课程编辑栏的弹出框的js
                         $('#editModal').on('show.bs.modal', function (event) {
                             let button = $(event.relatedTarget); // 触发事件的按钮
-                            let recipient = button.data('whatever');// 解析出data-whatever内容
-                            let modal = $(this);
-                            modal.find('.modal-title').text('对课程' + recipient + '的编辑');
-                            modal.find('#course-no').val(recipient);
+                            let recipient = button.data('flag');// 解析出按钮传入的data-flag内容
+                            let modal = $(this);//获取当前的model--即弹出窗口
+                            modal.find('.modal-title').text('编辑编号为：' + recipient + '的课程');//给弹出窗口设置标题
+                            modal.find('#course-no').val(recipient);//通过recipient给第一行赋值
+                            // 用jsp自带的foreach遍历request中存在的courseList，找到和按钮点击对应course
+                            // 将当前课程现有的数据写入弹出框
+                            <c:forEach var="course" items="${courseList}" begin="0" end="8" step="1">
+                            if (recipient === <c:out value="${course.courseNum}"/>) {
+                                modal.find('#course-name').val('<c:out value="${course.courseName}"/>');
+                                modal.find('#course-tea').val('<c:out value="${course.teacherNum}"/>');
+                                modal.find('#course-time').val('<c:out value="${course.courseTime}"/>');
+                                modal.find('#course-position').val('<c:out value="${course.coursePosition}"/>');
+                                modal.find('#course-weeks').val('<c:out value="${course.weeks}"/>');
+                                modal.find('#course-faculty').val('<c:out value="${course.facultyNum}"/>');
+                                modal.find('#course-credit').val('<c:out value="${course.credit}"/>');
+                            }
+                            </c:forEach>
+                            //设置保存按钮的点击函数
+                            //TODO 课程管理的保存按钮，就差一个ajax了
+                            $('#preservation').click(function (){
+
+                            })
+
                         });
                     </script>
                 </div>
@@ -272,8 +296,5 @@
 </div>
 <!--底部结束-->
 
-
 </body>
-
-
 </html>

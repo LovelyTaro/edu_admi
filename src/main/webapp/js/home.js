@@ -1,11 +1,6 @@
-
-$(document).ready(function(){
-    //登录检查
-    // checkLogin();
+$(document).ready(function () {
 
 });
-
-
 
 function checkLogin() {
     //ajax检查登录
@@ -24,29 +19,31 @@ function checkLogin() {
 }
 
 //退出登录
-function logout(){
+function logout() {
     $.ajax({
-        url:'LoginServlet',
-        type:'get',
-        success: function (){
+        url: 'LoginServlet',
+        type: 'get',
+        success: function () {
             window.location.reload();
         }
     })
-
 }
 
-// $(function(){
-//     $("#ad_setting").click(function(){
-//         $("#ad_setting_ul").show();
-//     });
-//     $("#ad_setting_ul").mouseleave(function(){
-//         $(this).hide();
-//     });
-//     $("#ad_setting_ul li").mouseenter(function(){
-//         $(this).find("a").attr("class","ad_setting_ul_li_a");
-//     });
-//     $("#ad_setting_ul li").mouseleave(function(){
-//         $(this).find("a").attr("class","");
-//     });
-// });
+function pageForward() {
+    let page = $('#pageNow').text().trim();
+    if (page > 1) {
+        page--;
+    }
+    window.location.href = "CourseManageServlet?page=" + page;
+}
+
+function pageBackward() {
+    let page = $('#pageNow').text().trim();
+    let pageAll = $('#pageAll').text().trim();
+    if (page + 1 <= pageAll) {
+        page++;
+    }
+    window.location.href = "CourseManageServlet?page=" + page;
+}
+
 

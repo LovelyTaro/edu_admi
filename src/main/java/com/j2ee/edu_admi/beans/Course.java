@@ -13,7 +13,6 @@ public class Course{
     private String facultyName;
 
     public Course() {
-
     }
 
     public Course(int courseNum, String courseName , int teacherNum, String courseTime, String coursePosition, int weeks, int facultyNum, int credit) {

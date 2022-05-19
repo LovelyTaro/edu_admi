@@ -4,9 +4,10 @@ import com.google.gson.Gson;
 import com.j2ee.edu_admi.beans.LoginBean;
 import com.j2ee.edu_admi.beans.User;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -38,8 +39,9 @@ public class RegisterServlet extends HttpServlet {
             LoginBean loginBean = new LoginBean();
             if(loginBean.register(user)){
                 //获取session
-                request.getSession().setAttribute("LoginInfo",username);
-                //登录成功跳转至home.html
+                request.getSession().setAttribute("username",username);
+                request.getSession().setAttribute("userid",username);
+//                登录成功跳转至home.html
 //                getServletContext().getRequestDispatcher("/home_adm.jsp").forward(request,response);
                 Map<String,Object> result = new HashMap<String,Object>();
                 result.put("registerResult",true);

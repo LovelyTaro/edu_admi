@@ -20,7 +20,7 @@ public class Faculty {
     }
 
     public static void setFacultyList() {
-        facultyList = new HashMap<Integer,String>();
+        facultyList = new HashMap<>();
         facultyList.put(1,"计算机系");
         facultyList.put(2,"电子系");
         facultyList.put(3,"自动化系");

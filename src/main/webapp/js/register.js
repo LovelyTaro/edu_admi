@@ -17,6 +17,7 @@ function loginSubmit() {
             dataType: 'json',
             success: function (data) {
                 if (data.loginResult) {
+                    //根据id的类型跳转至不同的主页
                     if(idInfo === "管理员"){
                         window.location.href = 'home_adm.jsp';
                     }
