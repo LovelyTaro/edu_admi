@@ -209,11 +209,7 @@ function checkUsername() {
                 }
             }
         })
-        if ($('#success-message').length > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return $('#success-message').length > 0;
     }
 }
 

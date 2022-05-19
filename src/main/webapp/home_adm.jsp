@@ -12,7 +12,7 @@
     <title>教务管理系统</title>
 
     <!--导入css-->
-    <link rel="stylesheet" href="css/index.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="css/home.css" type="text/css" media="screen"/>
 
     <!-- 导入js-->
     <script type="text/javascript" src="jquery-3.5.1/jquery-3.5.1.min.js"></script>
@@ -25,8 +25,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
             integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
             crossorigin="anonymous"></script>
-
 </head>
+
 <body>
 
 <!--顶部-->
@@ -35,19 +35,13 @@
         <span style="font-size: 16px;line-height: 45px;padding-left: 20px;color: #8d8d8d">教务管理系统</span>
     </div>
     <div id="ad_setting" class="ad_setting">
-        <a class="ad_setting_a" href="javascript:; ">
+        <span class="ad_setting_a">
             <i class="icon-user glyph-icon" style="font-size: 20px"></i>
             <span>管理员</span>
-            <i class="icon-chevron-down glyph-icon"></i>
-        </a>
-        <ul class="dropdown-menu-uu" style="display: none" id="ad_setting_ul">
-            <li class="ad_setting_ul_li">
-                <a href="javascript:logout();">
-                    <i class="icon-signout glyph-icon"></i>
-                    <span class="font-bold">退出</span>
-                </a>
-            </li>
-        </ul>
+        </span>
+        <span class="ad_setting_a2">
+            <span><a style="color: #8d8d8d" href="javascript:logout();">退出</a></span>
+        </span>
     </div>
 </div>
 <!--顶部结束-->
@@ -58,38 +52,22 @@
         <!--首页-->
         <li class="childUlLi">
             <a href="home_adm.jsp"><i class="glyph-icon icon-home"></i>首页</a>
-            <ul>
-
-            </ul>
+            <ul></ul>
         </li>
-
         <!--成员管理-->
         <li class="childUlLi">
-            <a> <i class="glyph-icon icon-reorder"></i>课程管理</a>
-            <ul>
-                <%--                <li><a href="#"><i class="glyph-icon icon-chevron-right"></i>后台菜单管理</a></li>--%>
-                <%--                <li><a href="#"><i class="glyph-icon icon-chevron-right"></i>展示商品管理</a></li>--%>
-                <%--                <li><a href="#"><i class="glyph-icon icon-chevron-right"></i>数据管理</a></li>--%>
-            </ul>
+            <a href="course_management.jsp" > <i class="glyph-icon icon-reorder"></i>课程管理</a>
+            <ul></ul>
         </li>
         <!--角色管理-->
         <li class="childUlLi">
             <a> <i class="glyph-icon icon-reorder"></i>人员管理</a>
-            <ul>
-                <%--                <li><a href="#"><i class="glyph-icon icon-chevron-right"></i>修改密码</a></li>--%>
-                <%--                <li><a href="#"><i class="glyph-icon icon-chevron-right"></i>帮助</a></li>--%>
-            </ul>
+            <ul></ul>
         </li>
         <!--菜单管理-->
         <li class="childUlLi">
             <a> <i class="glyph-icon  icon-location-arrow"></i>账号密码管理</a>
-            <ul>
-                <%--                <li><a href="meunbox.html" target="menuFrame"><i class="glyph-icon icon-chevron-right"></i>平台菜单</a></li>--%>
-                <%--                <li><a href="meunbox_add.html" target="menuFrame"><i class="glyph-icon icon-chevron-right"></i>运行商菜单</a>--%>
-                <%--                </li>--%>
-                <%--                <li><a href="#" target="menuFrame"><i class="glyph-icon icon-chevron-right"></i>服务站菜单</a></li>--%>
-                <%--                <li><a href="#" target="menuFrame"><i class="glyph-icon icon-chevron-right"></i>商家菜单</a></li>--%>
-            </ul>
+            <ul></ul>
         </li>
     </ul>
 </div>
@@ -100,43 +78,18 @@
 
     <!--右边主体部分的索引-->
     <div class="route_bg" id="content_index">
-        <a href="#">主页</a><i class="glyph-icon icon-chevron-right"></i>
-        <a href="#">菜单管理</a>
+        <a href="home_adm.jsp">主页</a>
     </div>
 
-    <!--右边主题部分的内容-->
+    <!--右边主体部分的内容-->
     <div class="main_content">
-        <div id="page_content_courseManagement" class="page_content">
-            <%--头部搜索栏--%>
-            <div class="content_top_wrap">
-                <%--顶部的标题--%>
-                <div class="content_top content_top_title">
-                    <h1 id="course">课程管理</h1>
-                </div>
-                <%--bootstrap的搜索框--%>
-                <div class="content_top content_top_search">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="搜索课程">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">搜索</button>
-                        </span>
-                    </div>
-                </div>
-                <%--添加课程按钮--%>
-                <div class="content_top content_top_button">
-                        <span class="content_top_button">
-                            <button class="btn btn-default" type="button">添加课程</button>
-                        </span>
-                </div>
-            </div>
-            <%--信息展示的表格--%>
-            <div>
 
-            </div>
-        </div>
+
     </div>
+    <!--右边主体部分的内容结束-->
 </div>
 <!--右边主体部分结束 -->
+
 
 <!--底部-->
 <div class="layout_footer">
@@ -144,5 +97,8 @@
 </div>
 <!--底部结束-->
 
+
 </body>
+
+
 </html>

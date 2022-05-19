@@ -12,10 +12,11 @@
     <title>教务管理系统</title>
 
     <!--导入css-->
-    <link rel="stylesheet" href="css/index.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="css/home.css" type="text/css" media="screen"/>
 
     <!-- 导入js-->
     <script type="text/javascript" src="jquery-3.5.1/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="js/tendina.min.js"></script>
     <script type="text/javascript" src="js/home.js"></script>
 </head>
 <body>

@@ -12,7 +12,7 @@ public class LoginBean {
 
     public LoginBean() throws ClassNotFoundException {
         //获取数据库对象
-        dbControl = DBControl.getDataBaseBean();
+        dbControl = DBControl.getDBControl();
     }
 
 
@@ -35,7 +35,7 @@ public class LoginBean {
             if(dbControl.queryUserExist(user)){
                 return false;
             }
-            DBControl dbControl = DBControl.getDataBaseBean();
+            DBControl dbControl = DBControl.getDBControl();
              return dbControl.insertUser(user);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
@@ -47,7 +47,7 @@ public class LoginBean {
     //检查用户名是否重复
     public boolean checkUserName(String username){
         try {
-            DBControl dbControl = DBControl.getDataBaseBean();
+            DBControl dbControl = DBControl.getDBControl();
             return dbControl.queryName(username);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();

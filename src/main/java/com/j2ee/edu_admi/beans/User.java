@@ -74,8 +74,6 @@ public class User {
             case "stu":
                 this.id = id;
                 break;
-
-
         }
     }
 }
