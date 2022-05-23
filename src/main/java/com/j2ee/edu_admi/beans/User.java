@@ -5,11 +5,22 @@ package com.j2ee.edu_admi.beans;
  */
 public class User {
 
+    public User(){
+
+    }
+
     public User(String username, String password, String id){
         this.setUsername(username);
         this.setPassword(password);
         this.setId(id);
     }
+    public User(int userNum,String username, String password){
+        this.userNum = userNum;
+        this.setUsername(username);
+        this.setPassword(password);
+    }
+
+    private int userNum;
 
     private String username;
 
@@ -75,6 +86,15 @@ public class User {
                 this.id = id;
                 break;
         }
+    }
+
+
+    public int getUserNum() {
+        return userNum;
+    }
+
+    public void setUserNum(int userNum) {
+        this.userNum = userNum;
     }
 
 

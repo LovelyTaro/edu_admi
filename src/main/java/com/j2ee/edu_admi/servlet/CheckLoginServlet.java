@@ -19,7 +19,7 @@ public class CheckLoginServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();
         //检测当前session中LoginInfo是否存在,若存在则已登录，不存在则未登录
-        if(request.getSession().getAttribute("LoginInfo") != null){
+        if(request.getSession().getAttribute("username") != null){
             Map<String,Object> result = new HashMap<>();
             result.put("isLogin", true);
             result.put("username",request.getSession().getAttribute("LoginInfo"));

@@ -1,7 +1,8 @@
 package com.j2ee.edu_admi.servlet;
 
 import com.google.gson.Gson;
-import com.j2ee.edu_admi.beans.LoginBean;
+import com.j2ee.edu_admi.dao.UserDao;
+import com.j2ee.edu_admi.dao.UserDaoImpl;
 import com.j2ee.edu_admi.beans.User;
 
 import javax.servlet.annotation.WebServlet;
@@ -20,12 +21,9 @@ import java.util.Map;
 @WebServlet(name = "LoginServlet", value = "/LoginServlet")
 public class LoginServlet extends HttpServlet {
 
-
-
     //对LoginServlet的get请求就是退出登录
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
         //退出登录
         response.setContentType("text/javascript;charset=utf-8");
         request.setCharacterEncoding("utf-8");
@@ -48,8 +46,9 @@ public class LoginServlet extends HttpServlet {
         User user = new User(username,password,id);
 
         try(PrintWriter out =response.getWriter()) {
-            LoginBean loginBean = new LoginBean();
-            if(loginBean.login(user)){
+//            LoginBean loginBean = new LoginBean();
+            UserDao userDao = new UserDaoImpl();
+            if(userDao.queryUserExist(user)){
                 //获取session
                 request.getSession().setAttribute("username",username);
                 request.getSession().setAttribute("userid",username);
@@ -66,7 +65,7 @@ public class LoginServlet extends HttpServlet {
                 String json = new Gson().toJson(result);
                 out.print(json);
             }
-        } catch (ClassNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

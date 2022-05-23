@@ -52,23 +52,23 @@
     <ul id="menu">
         <!--首页-->
         <li class="childUlLi">
-            <a href="home_adm.jsp"><i class="glyph-icon icon-home"></i>首页</a>
+            <a href="adm_home.jsp"><i class="glyph-icon icon-home"></i>首页</a>
             <ul></ul>
         </li>
-        <!--成员管理-->
+        <!--课程管理-->
         <li class="childUlLi">
-            <a href="CourseManageServlet?action" > <i class="glyph-icon icon-reorder"></i>课程管理</a>
-            <ul></ul>
+            <a href="CourseManageServlet"> <i class="glyph-icon icon-reorder"></i>课程管理</a>
+            <ul>
+
+            </ul>
         </li>
-        <!--角色管理-->
+        <!--人员管理管理-->
         <li class="childUlLi">
             <a> <i class="glyph-icon icon-reorder"></i>人员管理</a>
-            <ul></ul>
-        </li>
-        <!--菜单管理-->
-        <li class="childUlLi">
-            <a> <i class="glyph-icon  icon-location-arrow"></i>账号密码管理</a>
-            <ul></ul>
+            <ul>
+                <li><a href="UserManageServlet?userType=Student"><i class="glyph-icon icon-chevron-right"></i>学生管理</a></li>
+                <li><a href="UserManageServlet?userType=Teacher"><i class="glyph-icon icon-chevron-right"></i>教师管理</a></li>
+            </ul>
         </li>
     </ul>
 </div>
@@ -77,16 +77,25 @@
 <div id="layout_right_content" class="layout_right_content">
     <!--右边主体部分的索引-->
     <div class="route_bg" id="content_index">
-        <a href="home_adm.jsp">主页</a>
+        <a href="adm_home.jsp">主页</a><i class="glyph-icon icon-chevron-right"></i>
     </div>
     <!--右边主体部分的索引结束-->
     <!--右边主体部分的内容-->
     <div class="main_content">
-
+        <div class="container-fluid">
+            <div class="jumbotron">
+                <h1>你好 ,  <c:out value="${sessionScope.get('username')}" default="管理员"/>！</h1>
+                <h2 style="margin-left: 50px">欢迎使用，教务管理系统！</h2>
+                <br>
+                <p><a class="btn btn-primary btn-lg" href="#" role="button">关于我们</a></p>
+            </div>
+        </div>
     </div>
     <!--右边主体部分的内容结束-->
 </div>
 <!--右边主体部分结束 -->
+</div>
+
 <!--底部-->
 <div class="layout_footer">
     <p>Copyright © 董辰钰</p>

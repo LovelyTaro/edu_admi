@@ -1,5 +1,9 @@
 package com.j2ee.edu_admi.beans;
 
+/**
+ * @author Dcy
+ */
+
 public class Course{
 
     private int courseNum;
@@ -24,7 +28,15 @@ public class Course{
         this.coursePosition = coursePosition;
         this.facultyNum = facultyNum;
         this.credit = credit;
-        this.facultyName = Faculty.getFacultyNameByNum(facultyNum);
+    }
+    public Course( String courseName , int teacherNum, String courseTime, String coursePosition, int weeks, int facultyNum, int credit) {
+        this.teacherNum = teacherNum;
+        this.weeks = weeks;
+        this.courseName = courseName;
+        this.courseTime = courseTime;
+        this.coursePosition = coursePosition;
+        this.facultyNum = facultyNum;
+        this.credit = credit;
     }
 
     public int getCourseNum() {
@@ -92,7 +104,7 @@ public class Course{
     }
 
     public String getFacultyName() {
-        return facultyName;
+        return Faculty.getFacultyNameByNum(facultyNum);
     }
 
 }
