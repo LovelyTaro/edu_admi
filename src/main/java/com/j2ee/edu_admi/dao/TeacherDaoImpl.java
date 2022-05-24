@@ -57,12 +57,8 @@ public class TeacherDaoImpl extends BaseDao<Teacher> implements TeacherDao{
 
     @Override
     public List<Teacher> getTeacherList(int page) throws Exception {
-        String sql = "select * from teachers";
-        List<Teacher> list = this.queryForList(sql);
-        if (page * 8 > list.size()) {
-            return list.subList((page - 1) * 8, list.size());
-        }
-        return list.subList((page - 1) * 8, page * 8);
+        String sql = "select * from teachers limit ?,?";
+        return queryForList(sql,(page - 1) * 8,8);
     }
 
     public Teacher getStudentByUsername(String username) throws Exception{
