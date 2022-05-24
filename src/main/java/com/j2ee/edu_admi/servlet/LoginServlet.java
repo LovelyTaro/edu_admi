@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
         response.setContentType("text/javascript;charset=utf-8");
         request.setCharacterEncoding("utf-8");
         request.getSession().removeAttribute("username");
-        request.getSession().removeAttribute("userid");
+        request.getSession().removeAttribute("id");
 
     }
 
@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet {
             if(userDao.queryUserExist(user)){
                 //获取session
                 request.getSession().setAttribute("username",username);
-                request.getSession().setAttribute("userid",username);
+                request.getSession().setAttribute("id",user.getId());
                 //返回loginResult：true表示登录成功
                 Map<String,Object> result = new HashMap<>();
                 result.put("loginResult",true);

@@ -1,6 +1,7 @@
 package com.j2ee.edu_admi.dao;
 
 import com.j2ee.edu_admi.beans.Course;
+import com.j2ee.edu_admi.beans.Student;
 
 import java.util.List;
 
@@ -43,12 +44,8 @@ public class CourseDaoImpl extends BaseDao<Course> implements CourseDao {
 
     @Override
     public List<Course> getCourseList(int page) throws Exception {
-        String sql = "select * from courses";
-        List<Course> list = this.queryForList(sql);
-        if(page*8>list.size()){
-            return list.subList((page-1)*8, list.size());
-        }
-        return list.subList((page-1)*8,page*8);
+        String sql = "select * from courses limit ?,?";
+        return this.queryForList(sql, (page - 1) * 8, 8);
     }
 
     @Override
@@ -65,4 +62,76 @@ public class CourseDaoImpl extends BaseDao<Course> implements CourseDao {
                 course.getCredit(),
                 course.getCourseNum());
     }
+
+    @Override
+    public List<Course> getSelectedCourseList(String username, int page) throws Exception {
+//        String sql = "select * from courses where courseNum in (select courseNum from selectcourse where studentNum = ? ) limit ?,?";
+        String sql = "    select courses.courseNum,courseName,teacherNum,courseTime,coursePosition,weeks,facultyNum,credit,score from courses,selectcourse where courses.courseNum = selectcourse.courseNum and  studentNum = ? limit ?,? ";
+        StudentDao studentDao = new StudentDaoImpl();
+        int studentNum = studentDao.getStudentByUsername(username).getStudentNum();
+
+        return this.queryForList(sql, studentNum, (page - 1) * 8, 8);
+    }
+    public int getSelectedCourseListCount(String username) throws Exception{
+        String sql = "select count(*) from courses where courseNum in (select courseNum from selectcourse where studentNum = ? )";
+        StudentDao studentDao = new StudentDaoImpl();
+        int studentNum = studentDao.getStudentByUsername(username).getStudentNum();
+
+        return Integer.parseInt(this.queryForValue(sql, studentNum).toString());
+    }
+
+    @Override
+    public void selectCourse(int courseNum, String username) throws Exception{
+        String sql = "insert into selectcourse(courseNum,studentNum) values(?,?)";
+        try {
+            StudentDao studentDao = new StudentDaoImpl();
+            Student student = studentDao.getStudentByUsername(username);
+            this.executeUpdate(sql, courseNum, student.getStudentNum());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteSelectCourse(int courseNum, String username) throws Exception {
+        String sql = "delete from selectcourse where courseNum =? and studentNum =?";
+        try {
+            StudentDao studentDao = new StudentDaoImpl();
+            Student student = studentDao.getStudentByUsername(username);
+            this.executeUpdate(sql, courseNum, student.getStudentNum());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public List<Course> getTeacherCourseList(String username, int page) throws Exception {
+
+        String sql = "select * from courses where  teacherNum = ?  limit ?,?";
+
+        TeacherDao teacherDao = new TeacherDaoImpl();
+        int teacherNum = teacherDao.getStudentByUsername(username).getTeacherNum();
+
+        return this.queryForList(sql, teacherNum, (page - 1) * 8, 8);
+
+    }
+
+    @Override
+    public int getTeacherCourseListCount(String username) throws Exception {
+
+        String sql = "select count(*) from courses where  teacherNum = ? ";
+
+        TeacherDao teacherDao = new TeacherDaoImpl();
+        int teacherNum = teacherDao.getStudentByUsername(username).getTeacherNum();
+
+        return Integer.parseInt(this.queryForValue(sql, teacherNum).toString());
+
+    }
+
+    public void score(int courseNum,int studentNum,int score) throws Exception{
+        String sql = "update selectcourse set score = ? where courseNum=? and studentNum = ?";
+        this.executeUpdate(sql,score,courseNum,studentNum);
+    }
+
+
 }

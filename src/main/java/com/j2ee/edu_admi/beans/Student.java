@@ -12,6 +12,7 @@ public class Student extends User {
     private  int facultyNum;
     private String facultyName;
     private Date birth;
+    private Integer score;
 
     public Student(){
         this.setId("stu");
@@ -94,4 +95,11 @@ public class Student extends User {
     }
 
 
+    public Integer getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
 }

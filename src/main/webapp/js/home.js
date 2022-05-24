@@ -24,7 +24,7 @@ function logout() {
         url: 'LoginServlet',
         type: 'get',
         success: function () {
-            window.location.reload();
+            window.location.href = 'login.html';
         }
     })
 }
@@ -151,5 +151,56 @@ function addTeacher() {
         }
     });
 
+}
+
+function pageForwardSelectCourse() {
+    let page = $('#pageNow').text().trim();
+    if (page > 1) {
+        page--;
+    }
+    window.location.href = "SelectCourseServlet?page=" + page;
+}
+
+function pageBackwardSelectCourse() {
+    let page = $('#pageNow').text().trim();
+    let pageAll = $('#pageAll').text().trim();
+    if (page + 1 <= pageAll) {
+        page++;
+    }
+    window.location.href = "SelectCourseServlet?page=" + page;
+}
+
+function pageForwardSelectedCourse() {
+    let page = $('#pageNow').text().trim();
+    if (page > 1) {
+        page--;
+    }
+    window.location.href = "ShowSelectedCourseServlet?page=" + page;
+}
+
+function pageBackwardSelectedCourse() {
+    let page = $('#pageNow').text().trim();
+    let pageAll = $('#pageAll').text().trim();
+    if (page + 1 <= pageAll) {
+        page++;
+    }
+    window.location.href = "ShowSelectedCourseServlet?page=" + page;
+}
+
+function pageForwardMyCourse() {
+    let page = $('#pageNow').text().trim();
+    if (page > 1) {
+        page--;
+    }
+    window.location.href = "TeacherCoursesServlet?page=" + page;
+}
+
+function pageBackwardMyCourse() {
+    let page = $('#pageNow').text().trim();
+    let pageAll = $('#pageAll').text().trim();
+    if (page + 1 <= pageAll) {
+        page++;
+    }
+    window.location.href = "TeacherCoursesServlet?page=" + page;
 }
 

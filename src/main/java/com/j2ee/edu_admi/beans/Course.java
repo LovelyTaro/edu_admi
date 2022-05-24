@@ -15,6 +15,7 @@ public class Course{
     private String coursePosition;
     private int facultyNum;
     private String facultyName;
+    private Integer score;
 
     public Course() {
     }
@@ -107,4 +108,11 @@ public class Course{
         return Faculty.getFacultyNameByNum(facultyNum);
     }
 
+    public Integer getScore() {
+        return score;
+    }
+
+    public void setScore(Integer score) {
+        this.score = score;
+    }
 }

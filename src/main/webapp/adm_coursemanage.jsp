@@ -12,7 +12,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>教务管理系统</title>
+    <title>课程管理</title>
 
     <!--导入css-->
     <link rel="stylesheet" href="css/home.css" type="text/css" media="screen"/>
@@ -133,21 +133,21 @@
                         </thead>
                         <tbody>
                         <%--根据后台后台传入的courseList动态生成当前表格--%>
-                        <c:forEach var="student" items="${courseList}" begin="0" end="${courseList.size()}" step="1">
+                        <c:forEach var="course" items="${courseList}" begin="0" end="${courseList.size()}" step="1">
                             <c:if test="${student.courseNum != 0}">
                                 <tr>
-                                    <th scope="row"><c:out value="${student.courseNum}"/></th>
-                                    <td><c:out value="${student.courseName}"/></td>
-                                    <td><c:if test="${student.courseNum != 0}"><c:out value="${student.teacherNum}"/></c:if></td>
-                                    <td><c:out value="${student.courseTime}"/></td>
-                                    <td><c:out value="${student.coursePosition}"/></td>
-                                    <td><c:if test="${student.courseNum != 0}"><c:out value="${student.weeks}"/></c:if></td>
-                                    <td><c:out value="${student.facultyName}"/></td>
-                                    <td><c:if test="${student.courseNum != 0}"><c:out value="${student.credit}"/></c:if></td><td>
+                                    <th scope="row"><c:out value="${course.courseNum}"/></th>
+                                    <td><c:out value="${course.courseName}"/></td>
+                                    <td><c:if test="${course.courseNum != 0}"><c:out value="${course.teacherNum}"/></c:if></td>
+                                    <td><c:out value="${course.courseTime}"/></td>
+                                    <td><c:out value="${course.coursePosition}"/></td>
+                                    <td><c:if test="${course.courseNum != 0}"><c:out value="${course.weeks}"/></c:if></td>
+                                    <td><c:out value="${course.facultyName}"/></td>
+                                    <td><c:if test="${course.courseNum != 0}"><c:out value="${course.credit}"/></c:if></td><td>
                                         <button class="btn btn-default" data-toggle="modal" data-target="#editModal"
-                                                data-flag="${student.courseNum}">编辑
+                                                data-flag="${course.courseNum}">编辑
                                         </button>
-                                        <button class="btn btn-default delete" id="delete" data-deleteNum="${student.courseNum}" onclick="deleteButton(this)">删除</button>
+                                        <button class="btn btn-default delete" id="delete" data-deleteNum="${course.courseNum}" onclick="deleteButton(this)">删除</button>
                                     </td>
                                 </tr>
                             </c:if>
@@ -222,8 +222,16 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="form-title"> <label for="edit-facultyNum" class="control-label">院系:</label></div>
-                                            <div class="form-inside"><input type="number" class="form-control" name="facultyNum" required
-                                                                            id="edit-facultyNum"/></div>
+                                            <div class="form-inside">
+                                                <%--                                                <input type="number" class="form-control" name="facultyNum" required--%>
+                                                <%--                                                                            id="edit-facultyNum"/>--%>
+                                                <select id="edit-facultyNum" name="facultyNum"
+                                                        class="form-control" style="width: 300px;height: 34px">
+                                                    <option value="1">计算机系</option>
+                                                    <option value="2">电子系</option>
+                                                    <option value="3">自动化系</option>
+                                                </select>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="form-title"><label for="edit-credit" class="control-label">学分:</label> </div>
@@ -311,7 +319,14 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="form-title"><label for="add-facultyNum" class="control-label">院系:</label></div>
-                                            <div class="form-inside"><input type="number" class="form-control" name="facultyNum" id="add-facultyNum" required/></div>
+                                            <div class="form-inside">
+                                                <select id="add-facultyNum" name="facultyNum"
+                                                        class="form-control" style="width: 300px;height: 34px">
+                                                    <option value="1">计算机系</option>
+                                                    <option value="2">电子系</option>
+                                                    <option value="3">自动化系</option>
+                                                </select>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="form-title"><label for="add-credit" class="control-label">学分:</label></div>

@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>教务管理系统</title>
+    <title>首页</title>
 
     <!--导入css-->
     <link rel="stylesheet" href="css/home.css" type="text/css" media="screen"/>

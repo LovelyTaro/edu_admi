@@ -1,6 +1,4 @@
-<%@ page import="java.io.PrintWriter" %>
-<%@ page import="com.j2ee.edu_admi.beans.Teacher" %>
-<%@ page import="java.util.List" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Dcy
   Date: 2022/5/16
@@ -12,7 +10,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>教务管理系统</title>
+    <title>教师管理</title>
 
     <!--导入css-->
     <link rel="stylesheet" href="css/home.css" type="text/css" media="screen"/>
@@ -49,6 +47,7 @@
     </div>
 </div>
 <!--顶部结束-->
+
 <!--菜单-->
 <div class="layout_left_menu">
     <ul id="menu">
@@ -75,6 +74,7 @@
     </ul>
 </div>
 <!--菜单结束-->
+
 <!--右边主体部分 -->
 <div id="layout_right_content" class="layout_right_content">
     <!--右边主体部分的索引-->
@@ -93,16 +93,13 @@
                 <div class="row" style="width: 100%;height: 10%;">
                     <div class=".col-md-6"
                          style="width: fit-content;display: inline-block;padding-right: 40px;margin-left: 50px">
-                        <%--                        <div class="content_top content_top_title">--%>
                         <!--bootstrap提供的大标题-->
                         <div class="page-header">
                             <h1>教师信息管理 <small>Teacher Information Management</small></h1>
                         </div>
-                        <%--                        </div>--%>
                     </div>
                     <div class=".col-md-6"
                          style="width: fit-content;display: inline-block;float: right;margin-top: 50px;margin-right: 35px">
-                        <%--                        <div class="search">--%>
                         <!--教师的搜索框-->
                         <div class="content_top content_top_search">
                             <div class="input-group">
@@ -288,8 +285,8 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="form-title"><label for="add-facultyNum" class="control-label">院系编号</label></div>
-                                                    <div class="form-inside"><select id="add-facultyNum" name="facultyNum"
-                                                                                     class="form-control" style="width: 300px;height: 34px">
+                                                    <div class="form-inside">
+                                                        <select id="add-facultyNum" name="facultyNum" class="form-control" style="width: 300px;height: 34px">
                                                         <option value="1">计算机系</option>
                                                         <option value="2">电子系</option>
                                                         <option value="3">自动化系</option>
@@ -432,12 +429,12 @@
     <!--右边主体部分的内容结束-->
 </div>
 <!--右边主体部分结束 -->
+
 <!--底部-->
 <div class="layout_footer">
     <p>Copyright © 董辰钰</p>
 </div>
 <!--底部结束-->
-
 </body>
 </html>
 <script>

@@ -65,6 +65,16 @@ public class TeacherDaoImpl extends BaseDao<Teacher> implements TeacherDao{
         return list.subList((page - 1) * 8, page * 8);
     }
 
+    public Teacher getStudentByUsername(String username) throws Exception{
+        Teacher teacher = null;
+        String sql = "select * from teachers where userNum = (select userNum from users where username = ?)";
+        List<Teacher> list = this.queryForList(sql, username);
+        if (list.size() != 0) {
+            teacher = list.get(0);
+        }
+        return teacher;
+    }
+
     @Override
     public void alterTeacher(Teacher teacher) throws Exception {
         String sql = "update teachers set teacherName=? , gender = ? , facultyNum = ? , birth = ? where teacherNum = ?";

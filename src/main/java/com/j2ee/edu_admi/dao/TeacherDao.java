@@ -9,6 +9,7 @@ public interface TeacherDao {
     //根据老师编号/姓名获得教师
     Teacher getTeacherByNum(int teacherNum) throws Exception;
     Teacher getTeacherByName(String teacherName) throws Exception;
+    Teacher getStudentByUsername(String username) throws Exception;
     //插入一条Teacher
     void insertTeacher(Teacher teacher) throws Exception;
     //根据teacherNum删除一条数据

@@ -77,4 +77,34 @@ public class StudentDaoImpl extends BaseDao<Student> implements StudentDao {
                 student.getStudentNum()
         );
     }
+
+    @Override
+    public List<Student> getCourseStudents(int courseNum) throws Exception {
+        String sql = "select * from students where studentNum in (Select studentNum from selectcourse where courseNum =?)";
+        return this.queryForList(sql,courseNum);
+    }
+
+    @Override
+    public Student getStudentByUsername(String username) throws Exception{
+        Student student = null;
+        String sql = "select * from students where userNum = (select userNum from users where username = ?)";
+        List<Student> list = this.queryForList(sql, username);
+        if (list.size() != 0) {
+            student = list.get(0);
+        }
+        return student;
+    }
+    @Override
+    public List<Student> getSelectedStudent(int courseNum)throws Exception{
+//        String sql = "select * from students where studentNum in (Select studentNum from selectcourse where courseNum = ?) limit ?,?";
+//        return this.queryForList(sql, courseNum,(page - 1) * 8, 8);
+        String sql = " select students.studentNum,studentName,gender,facultyNum,score from students,selectcourse where students.studentNum=selectcourse.studentNum and courseNum =?";
+        return this.queryForList(sql, courseNum);
+    }
+    @Override
+    public int getSelectedStudentCount(int courseNum)throws Exception{
+        String sql = "select count(*) from students where studentNum in (Select studentNum from selectcourse where courseNum = ?)";
+        return Integer.parseInt(this.queryForValue(sql, courseNum).toString());
+    }
+
 }

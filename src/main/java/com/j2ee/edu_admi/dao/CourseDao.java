@@ -18,4 +18,15 @@ public interface CourseDao {
     List<Course> getCourseList(int page) throws Exception;
     //修改课程
     void alterCourse(Course course) throws Exception;
+    //获得某个学生已经选择的课
+    List<Course> getSelectedCourseList(String username,int page) throws Exception;
+    int getSelectedCourseListCount(String username) throws Exception;
+    //选课
+    void selectCourse(int courseNum,String username)throws Exception;
+    void deleteSelectCourse(int courseNum,String username)throws Exception;
+    //获取某个教师的课程列表
+    List<Course> getTeacherCourseList(String username, int page) throws Exception;
+    int getTeacherCourseListCount(String username) throws Exception;
+    //打分
+    void score(int courseNum,int studentNum,int score) throws Exception;
 }

@@ -17,6 +17,8 @@ import java.util.Map;
 
 @WebServlet(name = "UserInfoServlet", value = "/UserInfoServlet")
 public class UserInfoServlet extends HttpServlet {
+
+    //获取账号密码信息的---管理员
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/javascript;charset=utf-8");

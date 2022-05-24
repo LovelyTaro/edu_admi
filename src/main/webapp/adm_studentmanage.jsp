@@ -12,7 +12,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>教务管理系统</title>
+    <title>学生管理</title>
 
     <!--导入css-->
     <link rel="stylesheet" href="css/home.css" type="text/css" media="screen"/>
@@ -92,16 +92,13 @@
                 <div class="row" style="width: 100%;height: 10%;">
                     <div class=".col-md-6"
                          style="width: fit-content;display: inline-block;padding-right: 40px;margin-left: 50px">
-                        <%--                        <div class="content_top content_top_title">--%>
                         <!--bootstrap提供的大标题-->
                         <div class="page-header">
                             <h1>学生信息管理 <small>Student Information Management</small></h1>
                         </div>
-                        <%--                        </div>--%>
                     </div>
                     <div class=".col-md-6"
                          style="width: fit-content;display: inline-block;float: right;margin-top: 50px;margin-right: 35px">
-                        <%--                        <div class="search">--%>
                         <!--课程的搜索框-->
                         <div class="content_top content_top_search">
                             <div class="input-group">
