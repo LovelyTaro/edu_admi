@@ -18,7 +18,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * @author Dcy
+ */
 @WebServlet(name = "AddStudentServlet", value = "/AddStudentServlet")
 public class AddStudentServlet extends HttpServlet {
     @Override

@@ -4,7 +4,9 @@ import com.j2ee.edu_admi.beans.Student;
 import com.j2ee.edu_admi.beans.User;
 
 import java.util.List;
-
+/**
+ * @author Dcy
+ */
 public class StudentDaoImpl extends BaseDao<Student> implements StudentDao {
 
     @Override

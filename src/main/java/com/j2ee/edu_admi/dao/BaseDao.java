@@ -106,6 +106,7 @@ public abstract class BaseDao<T> {
             }
             list.add(bean);
         }//while
+        DBUtil.getDBUtil().closeConnect(connection, preparedStatement,resultSet);
         return list;
     }
 
@@ -124,6 +125,7 @@ public abstract class BaseDao<T> {
         if(resultSet.next()){
             result = resultSet.getObject(1);
         }
+        DBUtil.getDBUtil().closeConnect(connection, preparedStatement,resultSet);
         return result;
     }
 

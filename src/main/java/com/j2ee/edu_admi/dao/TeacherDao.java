@@ -3,7 +3,9 @@ package com.j2ee.edu_admi.dao;
 import com.j2ee.edu_admi.beans.Teacher;
 
 import java.util.List;
-
+/**
+ * @author Dcy
+ */
 public interface TeacherDao {
 
     //根据老师编号/姓名获得教师

@@ -2,6 +2,7 @@
  * @author Dcy
  */
 
+
 //提交登录前的判断，如果都不为空则提交登录
 function loginSubmit() {
     if (checkUsernameIsEmpty() && checkPassword()) {

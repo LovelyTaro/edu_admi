@@ -17,7 +17,9 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * @author Dcy
+ */
 @WebServlet(name = "ScoreServlet", value = "/ScoreServlet")
 public class ScoreServlet extends HttpServlet {
 

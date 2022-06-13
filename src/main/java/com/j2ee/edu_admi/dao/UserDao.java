@@ -1,7 +1,9 @@
 package com.j2ee.edu_admi.dao;
 
 import com.j2ee.edu_admi.beans.User;
-
+/**
+ * @author Dcy
+ */
 public interface UserDao {
     //根据username获取一条记录
     User getUser(String username) throws Exception;

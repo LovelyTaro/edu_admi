@@ -15,6 +15,10 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author Dcy
+ */
+
 @WebServlet(name = "UserInfoServlet", value = "/UserInfoServlet")
 public class UserInfoServlet extends HttpServlet {
 

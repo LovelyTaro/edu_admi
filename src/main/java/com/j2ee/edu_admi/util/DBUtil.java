@@ -13,7 +13,8 @@ public class DBUtil {
     //单例模式
     private DBUtil() throws ClassNotFoundException {
         //注册驱动
-        Class.forName("com.mysql.cj.jdbc.Driver");
+        //在ContextListener中加载
+//        Class.forName("com.mysql.cj.jdbc.Driver");
     }
 
     public static DBUtil getDBUtil() throws ClassNotFoundException {

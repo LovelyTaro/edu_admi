@@ -3,7 +3,9 @@ package com.j2ee.edu_admi.dao;
 import com.j2ee.edu_admi.beans.Course;
 
 import java.util.List;
-
+/**
+ * @author Dcy
+ */
 public interface CourseDao {
     //根据courseNum获取一条记录
     Course getCourseByNum(int courseNum) throws Exception;

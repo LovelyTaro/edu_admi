@@ -2,7 +2,9 @@ package com.j2ee.edu_admi.beans;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * @author Dcy
+ */
 public class Faculty {
 
 

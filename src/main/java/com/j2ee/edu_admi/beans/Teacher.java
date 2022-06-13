@@ -3,7 +3,9 @@ package com.j2ee.edu_admi.beans;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
+/**
+ * @author Dcy
+ */
 public class Teacher extends User{
     private int teacherNum;
     private int userNum;

@@ -4,7 +4,9 @@ import com.j2ee.edu_admi.beans.Course;
 import com.j2ee.edu_admi.beans.Student;
 
 import java.util.List;
-
+/**
+ * @author Dcy
+ */
 public class CourseDaoImpl extends BaseDao<Course> implements CourseDao {
     @Override
     public Course getCourseByNum(int courseNum) throws Exception {

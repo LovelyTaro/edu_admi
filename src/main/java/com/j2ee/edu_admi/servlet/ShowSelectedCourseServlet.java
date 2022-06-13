@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-
+/**
+ * @author Dcy
+ */
 @WebServlet(name = "ShowSelectedCourseServlet", value = "/ShowSelectedCourseServlet")
 public class ShowSelectedCourseServlet extends HttpServlet {
 
@@ -30,6 +32,7 @@ public class ShowSelectedCourseServlet extends HttpServlet {
             showSelectCourse(request, response);
         } catch (Exception e) {
             e.printStackTrace();
+            getServletContext().getRequestDispatcher("/stu_selectedcourse.jsp").forward(request, response);
         }
     }
 
@@ -53,7 +56,7 @@ public class ShowSelectedCourseServlet extends HttpServlet {
             count = studentCount / MAXLENGTH + 1;
         }
         //如果page的信息不为空
-        if (request.getParameter("page") != null) {
+        if (request.getParameter("page") != null && count != 0) {
             page = Math.min(Integer.parseInt(request.getParameter("page")), count);
         }
 

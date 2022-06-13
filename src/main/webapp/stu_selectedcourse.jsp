@@ -112,8 +112,8 @@
                                     <th>上课地点</th>
                                     <th>上课周数</th>
                                     <th>院系</th>
-                                    <th>学分</th>
                                     <th>成绩</th>
+                                    <th>学分</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>

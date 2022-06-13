@@ -10,7 +10,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * @author Dcy
+ */
 @WebServlet(name = "CheckLoginServlet", value = "/CheckLoginServlet")
 public class CheckLoginServlet extends HttpServlet {
     @Override
