@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="edu_admi">
+    <output-path>$PROJECT_DIR$/out/artifacts/edu_admi</output-path>
+    <root id="archive" name="edu_admi.war">
+      <element id="dir-copy" path="$PROJECT_DIR$" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="edu_admi" />
+        </element>
+      </element>
+      <element id="module-output" name="edu_admi" />
+    </root>
+  </artifact>
+</component>
